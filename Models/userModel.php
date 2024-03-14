@@ -25,7 +25,7 @@ function createUser($pdo){
 
 function connectUser($pdo){
     try{
-        $query = 'select * from utilisateurs where loginUser = :loginUser and passWordUser = :passWordUser';
+        $query = 'select * from guards where GuardName = :loginUser and GuardFirstName = :passWordUser';
 
         $connectUser = $pdo->prepare($query);
 
@@ -51,7 +51,7 @@ function connectUser($pdo){
 function updateUser($pdo){
     try{
 
-        $query = "update utilisateurs set nomUser = :nomUser, prenomUser = :prenomUser, passWordUser = :passWordUser, emailUser = :emailUser where id = :id";
+        $query = "update guards set nomUser = :nomUser, prenomUser = :prenomUser, passWordUser = :passWordUser, emailUser = :emailUser where id = :id";
 
         $updateUser = $pdo->prepare($query);
 
@@ -70,7 +70,7 @@ function updateUser($pdo){
 
 function updateSession($pdo){
     try{
-        $query = 'select * from utilisateurs where id = :id';
+        $query = 'select * from guards where id = :id';
         $selectUser = $pdo->prepare($query);
         $selectUser->execute([
             'id' => $_SESSION['user']->id

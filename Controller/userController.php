@@ -3,7 +3,16 @@
 require_once("Models/userModel.php");
 
 if($uri === "/connexion"){
-    $title = "SCP Fondation - Connexion";
+    if(isset($_POST['btnEnvoi'])){
+        $erreur = false;
+        if(connectUser($pdo)){
+            header("location:/");
+        }
+        else{
+            $erreur = true;
+        }
+    }
+    $title = "Connexion";
     $template = "Views/Users/connexion.php";
     require_once("Views/base.php");
 }
