@@ -1,9 +1,9 @@
 <?php
 
 
-function selectAllSCPs($pdo){
+function selectAllScientists($pdo){
     try{
-        $query = 'select * from scp';
+        $query = 'select * from scientist';
 
         $scpList = $pdo->prepare($query);
 

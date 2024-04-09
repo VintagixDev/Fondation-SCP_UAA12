@@ -31,6 +31,10 @@ else if($uri === "/inscription"){
     $template = "Views/Users/inscription.php";
     require_once("Views/base.php");
 }
+else if($uri === "/deconnexion"){
+    session_destroy();
+    header('location:/');
+}
 
 function verifEmptyData(){
     foreach($_POST as $key => $value){

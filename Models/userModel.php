@@ -81,3 +81,4 @@ function updateSession($pdo){
         die($e->getMessage());
     }
 }
+
