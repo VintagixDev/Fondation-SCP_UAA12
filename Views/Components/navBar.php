@@ -5,13 +5,17 @@
         <div class="left">
             <li><a href="/">Accueil</a></li>
             <li><a href="/scp">SCP</a></li>
-            <li class="sublist">Personnel
-                <ul class="nested-list">
-                    <li><a href="classD">Classe D</a></li>
-                    <li><a href="scientifique">Scientifiques</a></li>
-                    <li><a href="guarde">Gardes</a></li>
-            </ul>
-            </li>
+            <div class="nav__personnel">
+                
+                <img src="https://img.icons8.com/ios-filled/50/expand-arrow--v1.png" alt="expand-arrow--v1"/>
+                <li class="sublist">Personnel
+                    <ul class="nested-list">
+                        <li><a href="classD">Classe D</a></li>
+                        <li><a href="scientifique">Scientifiques</a></li>
+                        <li><a href="guarde">Gardes</a></li>
+                </ul>
+                </li>
+            </div>
             <li><a href="experiences">Expériences</a></li>
         </div>
         <div class="search-container">

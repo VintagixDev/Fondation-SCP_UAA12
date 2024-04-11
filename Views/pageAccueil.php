@@ -47,12 +47,16 @@
 
     <h2 class="site_title">Nos différents Sites</h2>
     <div class="card-list">
+        <?php foreach($sites as $site) :?>
         <div class="card">
-            <div class="card_img"></div>
-            <div class="card_name">Site 12</div>
-            <div class="card_country">Pays: Indéfini</div>
-            <button onclick="window.location.href='scp'">Consulter</button>
+            <img class="card_img" src="<?= $site->siteImg?>"></img>
+            <div class="card_name"><?= $site->siteName?></div>
+            <div class="card_country">Lieu: <?= $site->siteCountry?></div>
+            <button class="card_button">
+                <span>Consulter</span>
+            </button>
         </div>
+        <?php endforeach?>
     </div>
 </div>
 

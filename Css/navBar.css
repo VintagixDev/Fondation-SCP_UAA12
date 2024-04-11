@@ -53,17 +53,47 @@ body{
     text-decoration: none;
 }
 
+.nav__personnel{
+    display: flex;
+}
+
+.nav__personnel img{
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+    margin-right: 8px;
+}
+
 
 
 .nested-list{
     display: none;
-    margin-top: 5px;
+    position: relative;
+    background-color: whitesmoke
+}
+.nested-list::after{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    transform: rotateZ(45deg);
+    background-color: whitesmoke;
+    top: -7px;
+    left: 3px;
+    z-index: 2;
 }
 
-.sublist:hover  .nested-list{
+.nav__personnel:hover .nested-list{
     display: block;
     position: absolute;
-    background-color: red;
+}
+
+.nav__personnel img{
+    transition: transform .5s;
+}
+
+.nav__personnel:hover img{
+    transform: rotateZ(-90deg)
 }
 
 .nested-list:hover{
