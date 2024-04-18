@@ -52,7 +52,7 @@
             <img class="card_img" src="<?= $site->siteImg?>"></img>
             <div class="card_name"><?= $site->siteName?></div>
             <div class="card_country">Lieu: <?= $site->siteCountry?></div>
-            <button class="card_button">
+            <button class="card_button" onclick="location.href = 'site?siteId=<?= $site->siteID?>'">
                 <span>Consulter</span>
             </button>
         </div>

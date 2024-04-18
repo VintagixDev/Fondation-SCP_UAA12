@@ -19,6 +19,7 @@ body{
 
     background-color: var(--header-bg-clr);
     align-items: center;
+    margin-bottom: 40px;
 }
 
 .header{
@@ -71,6 +72,18 @@ body{
     position: relative;
     background-color: whitesmoke
 }
+
+
+.nested-list::before{
+    content: '';
+    position: absolute;
+    z-index: 2;
+    width: 100px;
+    top: -15px;
+    left: 0;
+    height: 15px;
+}
+
 .nested-list::after{
     content: '';
     position: absolute;

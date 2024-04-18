@@ -23,6 +23,6 @@ if($uri === "/index.php" || $uri === '/'){
 
     $scientists = selectAllScientists($pdo);
     $title = "Liste des scientifiques";
-    $template = "Views/scientifiques.php";
+    $template = "Views/Personnel/scientifiques.php";
     require_once("Views/base.php");
 }
