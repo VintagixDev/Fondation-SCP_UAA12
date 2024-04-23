@@ -1,0 +1,51 @@
+.scp__title{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.scpContainer{
+    
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.scp__card{
+    display:flex;
+    gap: 20px;
+    height: auto;
+    border: 1px black solid;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.scp__card img{
+    width: 125px; 
+    height: 125px; 
+    border-radius: 15px;
+
+
+}
+
+.scp__card .scp__card_right{
+    margin-right: 10px;
+}
+
+.scp__card div h1{
+    margin-bottom: 0px;
+    margin-top: 0;
+}
+
+.scp__card div p{
+    margin-top: 0;
+}
+
+.scp__card div .card_button{
+    margin-top: -5px;
+    
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+}
+
