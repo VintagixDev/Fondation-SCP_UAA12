@@ -12,28 +12,19 @@
                     </legend>
                 <div class="mb-3">
                     <label for="Nom" class="form-label">Nom</label>
-                    <input type="text" placeholder="Nom" class="form-control" id="nom" name="nom" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->nomUser ?>" <?php endif ?>>
+                    <input type="text" placeholder="Nom" class="form-control" id="nom" name="nom" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->userLastName ?>" <?php endif ?>>
                 </div>
                 <div class="mb-3">
                     <label for="Prenom" class="form-label">Prénom</label>
-                    <input type="text" placeholder="Prénom" class="form-control" id="prenom" name="prenom" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->prenomUser ?>" <?php endif ?>>
+                    <input type="text" placeholder="Prénom" class="form-control" id="prenom" name="prenom" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->userFirstName ?>" <?php endif ?>>
                 </div>
                 <div class="mb-3">
-                    <label for="description" class="form-label">description</label>
-                    <input type="text" placeholder="description" class="form-control" id="description" name="description" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->emailUser ?>" <?php endif ?>>
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" placeholder="Email@SCP-Corp.com" class="form-control" id="email" name="email" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->userEmail ?>" <?php endif ?>>
                 </div>
                 <div class="mb-3">
-                    <label for="gender" class="form-label">gender</label>
-                    <input type="checkbox" placeholder="gender" class="form-control" id="gender" name="gender" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->loginUser ?>" <?php endif ?>>
-                </div>
-                <div class="mb-3">
-                    <label for="rank" class="form-label">Rank</label>
-                    <input type="text" placeholder="rank" class="form-control" id="rank" name="rank" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->passWordUser ?>" <?php endif ?>>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="birthdate" class="form-label">birth</label>
-                    <input type="date" placeholder="date" class="form-control" id="birthdate" name="birthdate" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->passWordUser ?>" <?php endif ?>>
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" placeholder="Mot de passe..." class="form-control" id="password" name="password" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->userPassword ?>" <?php endif ?>>
                 </div>
                 <div>
                     <button name="btnEnvoi" class="btn btn-primary" value="submit">Envoyer</button>

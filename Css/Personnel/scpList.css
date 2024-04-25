@@ -1,12 +1,9 @@
-.scp__title{
-    text-align: center;
-    margin-bottom: 50px;
-}
+
 .scpContainer{
     
     display: flex;
     justify-content: space-evenly;
-    
+    height: 100%;
 }
 
 .scp__card{
@@ -16,6 +13,7 @@
     border: 1px black solid;
     padding: 10px;
     border-radius: 10px;
+    margin-bottom: 25px;
 }
 
 .scp__card img{
@@ -39,13 +37,75 @@
     margin-top: 0;
 }
 
-.scp__card div .card_button{
+.scp__card .scp_card_buttons{
     margin-top: -5px;
     
+}
+
+
+.scp__card .card_delete{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #db0303;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 14px;
+    width: 50px;
+    height: 50px;
+    transition: all 0.5s;
+    cursor: pointer;
+    position: relative;
+}
+
+.scp__card .card_delete svg{
+    width: 30px;
+    height: 29px;
+    position: absolute;
+    top: 23%;
+    left: 23%;
+}
+
+.scp__card .scp__card_buttons{
+    display: flex;
+    gap: 10px;
+}
+
+.scpList{
+    padding-left: 100px;
+    border-left: 1px solid black;
 }
 
 .footer{
     position: absolute;
     bottom: 0;
 }
-
+.title_flex{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 150px;
+    
+}
+.addSCP{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #008a22;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 14px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-bottom: 50px;
+    margin-right: 300px;
+}

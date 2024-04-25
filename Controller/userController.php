@@ -20,12 +20,18 @@ else if($uri === "/inscription"){
     if(isset($_POST['btnEnvoi'])){
 
         $messageError = verifEmptyData();
-        if(!$messageError){
-            //ajout de l'user à la bdd
-            createUser($pdo);
-            //redirection vers la page de connexion
-            header('location:/connexion');
+        if(!isset($_SESSION["user"])){
+            if(!$messageError){
+                //ajout de l'user à la bdd
+                createUser($pdo);
+                //redirection vers la page de connexion
+                header('location:/connexion');
+            }
+        }else{
+            updateUser($pdo);
+            header('location:/');
         }
+
     }
     $title = "Inscription";
     $template = "Views/Users/inscription.php";

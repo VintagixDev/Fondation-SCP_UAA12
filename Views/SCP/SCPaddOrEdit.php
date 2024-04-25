@@ -12,7 +12,7 @@
                     <input type="text" placeholder="SCP-XXX" class="form-control" id="matricule" name="matricule" required>
                 </div>
                 <div>
-                    <select name="classe" id="options-select" multiple>
+                    <select name="classe" id="options-select">
         
                             <option value="safe" selected>Safe</option>
                             <option value="euclide">Euclide</option>
@@ -28,7 +28,7 @@
                     <input type="text" placeholder="Description du SCP" class="form-control" id="description" name="description" required>
                 </div>
                 <div>
-                    <select name="site" id="options-select" multiple>
+                    <select name="site" id="options-select">
                         <?php foreach ($sites as $site) : ?>
                             <option value="<?= $site->siteID ?>"><?=$site->siteName?></option>
                         <?php endforeach ?>

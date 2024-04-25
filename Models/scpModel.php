@@ -18,6 +18,25 @@ function selectAllSCPs($pdo){
     }
 }
 
+function selectSCPFromID($pdo){
+    try{
+        $query = 'select * from scp where SCPID = :id';
+
+        $scpList = $pdo->prepare($query);
+
+        $scpList->execute([
+            'id' => $_GET["SCPID"]
+        ]);
+
+        $scp = $scpList->fetch();
+        
+        return $scp;
+    }catch(PDOEXCEPTION $e){
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
 function selectAllSCPsOnClass($pdo, $scpClass){
     try{
         $query = 'select * from scp where SCPClass = :scpClass';
@@ -46,9 +65,9 @@ function createSCP($pdo){
 
         $img = uploadImageSCP();
 
-        $ajouteUser = $pdo->prepare($query);
+        $ajouteSCP = $pdo->prepare($query);
 
-        $ajouteUser->execute([
+        $ajouteSCP->execute([
             'SCPMatricule' => $_POST["matricule"],
             'SCPClass' => $_POST["classe"],
             'SCPContainment' => $_POST["containment"],
@@ -56,9 +75,25 @@ function createSCP($pdo){
             'siteID' => $_POST["site"],
             'SCPImage' => $img
         ]);
+
+        return true;
     } catch(PDOEXCEPTION $e){
         $message = $e->getMessage();
         die($message);
+    }
+}
+
+function deleteSCPFromID($pdo){
+    try{
+        $query = 'delete from SCP where SCPID = :scpId';
+        $deleteSCP = $pdo->prepare($query);
+
+        $deleteSCP->execute([
+            'scpId' => $_GET["SCPID"]
+        ]);
+
+    }catch(PDOEXCEPTION $e){
+        die($e->getMessage());
     }
 }
 

@@ -19,7 +19,10 @@ if($uri === "/scp"){
         if(createSCP($pdo)){
             
             header('location:/scp');
+        } else{
+
         }
+        
     }else{
         $sites = selectAllSites($pdo);
         $title = "Ajouter un SCP";
@@ -27,4 +30,14 @@ if($uri === "/scp"){
         require_once("Views/base.php");
         
     }
+} else if(isset($_GET["SCPID"]) && $uri === "/scpDelete?SCPID=" . $_GET["SCPID"]){
+    deleteSCPFromID($pdo);
+    header('location:/scp');
+
+    
+} else if(isset($_GET["SCPID"]) && $uri === "/scpView?SCPID=" . $_GET["SCPID"]){
+    $scp = selectSCPFromID($pdo);
+    $title = $scp->SCPMatricule;
+    $template = "Views/SCP/SCPView.php";
+    require_once("Views/base.php");
 }

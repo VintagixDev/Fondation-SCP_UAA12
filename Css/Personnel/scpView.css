@@ -1,0 +1,29 @@
+.scpview__flex{
+    display: flex;
+    margin-left: 250px;
+    margin-right: 250px;
+    gap: 150px;
+}
+
+.scp_name{
+    text-decoration:underline;
+    font-size: 3rem;
+}
+
+.scp_class{
+    font-size: 2rem;
+    margin-bottom: 50px;
+}
+
+.scp_class a{
+    text-decoration: underline;
+}
+
+p{
+    font-size: 1.15rem;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+}

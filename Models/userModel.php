@@ -2,20 +2,19 @@
 
 function createUser($pdo){
     try{
-        $query = 'insert into guards(guardName, guardFirstName,
-        guardDescription, guardGender, guardRank, guardBirthdate) values
-        (:nomUser, :prenomUser, :descriptionUser, :genderUser,
-        :guardRank, :guardBirthdate)';
+        $query = 'insert into user(userFirstName, userLastName,
+        userEmail, userPassword, userPermission) values
+        (:prenomUser, :nomUser, :userEmail, :userPassword,
+        :userPermission)';
 
         $ajouteUser = $pdo->prepare($query);
 
         $ajouteUser->execute([
-            'nomUser' => $_POST["nom"],
             'prenomUser' => $_POST["prenom"],
-            'descriptionUser' => $_POST["description"],
-            'genderUser' => 1,
-            'guardRank' => $_POST["rank"],
-            'guardBirthdate' => $_POST["birthdate"]
+            'nomUser' => $_POST["nom"],
+            'userEmail' => $_POST["email"],
+            'userPassword' => $_POST["password"],
+            'userPermission' => "default"
         ]);
     } catch(PDOEXCEPTION $e){
         $message = $e->getMessage();
@@ -25,13 +24,13 @@ function createUser($pdo){
 
 function connectUser($pdo){
     try{
-        $query = 'select * from guards where GuardName = :loginUser and GuardFirstName = :passWordUser';
+        $query = 'select * from user where userEmail = :loginUser and userPassword = :passWordUser';
 
         $connectUser = $pdo->prepare($query);
 
         $connectUser->execute([
-            'loginUser' => $_POST["login"],
-            'passWordUser' => $_POST['mot_de_passe']
+            'loginUser' => $_POST["email"],
+            'passWordUser' => $_POST['password']
         ]);
 
         $user = $connectUser->fetch();
@@ -51,16 +50,16 @@ function connectUser($pdo){
 function updateUser($pdo){
     try{
 
-        $query = "update guards set nomUser = :nomUser, prenomUser = :prenomUser, passWordUser = :passWordUser, emailUser = :emailUser where id = :id";
+        $query = "update user set userLastName = :nomUser, userFirstName = :prenomUser, userPassword = :passWordUser, userEmail = :emailUser where userID = :id";
 
         $updateUser = $pdo->prepare($query);
 
         $updateUser->execute([
             'nomUser' => $_POST['nom'],
             'prenomUser' => $_POST['prenom'],
-            'passWordUser' => $_POST['mot_de_passe'],
+            'passWordUser' => $_POST['password'],
             'emailUser' => $_POST['email'],
-            'id' => $_SESSION['user']->id
+            'id' => $_SESSION['user']->userID
         ]);
 
     }catch(PDOException $e){
@@ -70,10 +69,10 @@ function updateUser($pdo){
 
 function updateSession($pdo){
     try{
-        $query = 'select * from guards where id = :id';
+        $query = 'select * from user where userID = :id';
         $selectUser = $pdo->prepare($query);
         $selectUser->execute([
-            'id' => $_SESSION['user']->id
+            'id' => $_SESSION['user']->userID
         ]);
         $user = $selectUser->fetch();
         $_SESSION['user'] = $user;
