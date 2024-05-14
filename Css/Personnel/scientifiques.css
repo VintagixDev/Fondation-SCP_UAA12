@@ -4,6 +4,8 @@
     display: flex;
     gap: 50px;
     margin-left: 50px;
+    padding-bottom: 70px;
+    flex-wrap: wrap;
 }
 
 .scientist__card{

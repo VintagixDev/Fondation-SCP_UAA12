@@ -1,5 +1,6 @@
 .footer{
     padding: 3px 3px;
+    position: absolute;
     bottom: 0;
     width: 100%;
     background-color: black;
@@ -9,4 +10,9 @@
 
 .footer p{
     text-align: center;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
 }
