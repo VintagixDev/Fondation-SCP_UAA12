@@ -1,6 +1,6 @@
 <?php
 
-
+require_once('Models/globalModel.php');
 function selectAllSCPs($pdo){
     try{
         $query = 'select * from scp';
@@ -63,7 +63,7 @@ function createSCP($pdo){
         (:SCPMatricule, :SCPClass, :SCPContainment, :SCPDescription,
         :siteID, :SCPImage)';
 
-        $img = uploadImageSCP();
+        $img = uploadImage("SCP");
 
         $ajouteSCP = $pdo->prepare($query);
 
@@ -85,6 +85,22 @@ function createSCP($pdo){
 
 function deleteSCPFromID($pdo){
     try{
+        
+        $query = 'select SCPImage from SCP where SCPID = :scpId';
+        $SCP = $pdo->prepare($query);
+
+        $SCP->execute([
+            'scpId' => $_GET["SCPID"]
+        ]);
+
+        $scpInfos = $SCP->fetch();
+        
+
+        if(unlink("Assets/Pictures/SCP/" . $scpInfos->SCPImage)){
+            echo("Assets/Pictures/SCP/" . $scpInfos->SCPImage . " successfully deleted");
+        }
+        
+
         $query = 'delete from SCP where SCPID = :scpId';
         $deleteSCP = $pdo->prepare($query);
 
@@ -92,29 +108,10 @@ function deleteSCPFromID($pdo){
             'scpId' => $_GET["SCPID"]
         ]);
 
+
+
     }catch(PDOEXCEPTION $e){
         die($e->getMessage());
     }
 }
 
-function uploadImageSCP()
-{
-    //chemin images
-    $upload_dir = 'Assets/Pictures/SCP/';
-  
-    if ($_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
-        $tmp_name = $_FILES['profile_image']['tmp_name'];
-        $original_name = $_FILES['profile_image']['name'];
-        $extension = pathinfo($original_name, PATHINFO_EXTENSION);
-        $new_name = 'userProfile' . date('YmdHis') . '.' . $extension;
-        $destination = $upload_dir . $new_name;
-
-        if (move_uploaded_file($tmp_name, $destination)) {
-            return $new_name;
-        } else {
-            die("Failed to move uploaded file.");
-        }
-    } else {
-        die("File upload failed.");
-    }
-}

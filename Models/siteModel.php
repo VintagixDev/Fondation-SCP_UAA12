@@ -1,5 +1,6 @@
 <?php
 
+require_once("Models/globalModel.php");
 
 function selectAllSites($pdo){
     try{
@@ -35,3 +36,65 @@ function selectSiteById($pdo){
         die($e->getMessage());
     }
 }
+
+function createSite($pdo){
+    try{
+        $query = 'insert into site(siteName, siteCountry,
+        siteDescription, siteImg) values
+        (:siteName, :siteCountry, :siteDescription, :siteImg)';
+
+        $img = uploadImage("Sites");
+
+        $ajouteSCP = $pdo->prepare($query);
+
+        $ajouteSCP->execute([
+            'siteName' => $_POST["site_nom"],
+            'siteCountry' => $_POST["site_pays"],
+            'siteDescription' => $_POST["site_desc"],
+            'siteImg' => $img
+        ]);
+
+        return true;
+    } catch(PDOEXCEPTION $e){
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+function deleteSiteFromID($pdo){
+    try{
+        
+        $query = 'select * from site where siteID = :siteID';
+        $site = $pdo->prepare($query);
+
+        $site->execute([
+            'siteID' => $_GET["siteID"]
+        ]);
+
+        $siteInfos = $site->fetch();
+        
+
+        if(unlink("Assets/Pictures/Sites/" . $siteInfos->siteImg)){
+            echo("Assets/Pictures/Sites/" . $siteInfos->siteImg . " successfully deleted");
+        }
+        
+        $query = 'delete from scp where siteID = :siteID';
+        $deleteSCP = $pdo->prepare($query);
+        $deleteSCP->execute([
+            'siteID' => $_GET["siteID"]
+        ]);
+
+        $query = 'delete from site where siteID = :siteID';
+        $deleteSite = $pdo->prepare($query);
+
+        $deleteSite->execute([
+            'siteID' => $_GET["siteID"]
+        ]);
+
+
+
+    }catch(PDOEXCEPTION $e){
+        die($e->getMessage());
+    }
+}
+
