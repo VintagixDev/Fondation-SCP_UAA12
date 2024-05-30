@@ -84,6 +84,12 @@ function deleteSiteFromID($pdo){
             'siteID' => $_GET["siteID"]
         ]);
 
+        $query = 'delete from scientist where siteID = :siteID';
+        $deleteSCP = $pdo->prepare($query);
+        $deleteSCP->execute([
+            'siteID' => $_GET["siteID"]
+        ]);
+
         $query = 'delete from site where siteID = :siteID';
         $deleteSite = $pdo->prepare($query);
 

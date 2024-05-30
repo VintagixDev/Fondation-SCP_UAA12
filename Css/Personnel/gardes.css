@@ -1,4 +1,4 @@
-.scientist__card_container{
+.guard__card_container{
     margin-top: 5px;
     width: 100%;
     display: flex;
@@ -8,7 +8,7 @@
     flex-wrap: wrap;
 }
 
-.scientist__card{
+.guard__card{
     background-color: gainsboro;
     width: 200px;
     padding-top: 25px;
@@ -18,7 +18,7 @@
     border-radius: 25px;
 }
 
-.scientist__card .scientist__img{
+.guard__card .guard__img{
     width: 150px;
     aspect-ratio: 1;
     border-radius: 50%;
@@ -86,7 +86,7 @@
     left: 23%;
 }
 
-.addScientist{
+.addGuard{
     margin-top: 50px;
     margin-left: 50px;
     margin-right: 50px;

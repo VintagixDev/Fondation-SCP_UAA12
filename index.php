@@ -5,3 +5,6 @@ require_once("Controller/indexController.php");
 require_once("Controller/userController.php");
 require_once("Controller/siteController.php");
 require_once("Controller/SCPController.php");
+require_once("Controller/scientistController.php");
+require_once("Controller/guardController.php");
+require_once("Controller/classDController.php");

@@ -12,19 +12,13 @@
                     <ul class="nested-list">
                         <li><a href="classD">Classe D</a></li>
                         <li><a href="scientifique">Scientifiques</a></li>
-                        <li><a href="guarde">Gardes</a></li>
+                        <li><a href="garde">Gardes</a></li>
                 </ul>
                 </li>
             </div>
             <li><a href="experiences">Expériences</a></li>
         </div>
-        <div class="search-container">
-            <form action="">
-                <input type="text" placeholder="Rechercher.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
         
-        </div>
         <div class="right">
             <?php if(isset($_SESSION["user"])) :?>
                     <li><a href="profil">Profil</a></li>
