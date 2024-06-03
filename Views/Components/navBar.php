@@ -10,7 +10,7 @@
                 <img src="https://img.icons8.com/ios-filled/50/expand-arrow--v1.png" alt="expand-arrow--v1"/>
                 <li class="sublist">Personnel
                     <ul class="nested-list">
-                        <li><a href="classD">Classe D</a></li>
+                        <li><a href="classeD">Classe D</a></li>
                         <li><a href="scientifique">Scientifiques</a></li>
                         <li><a href="garde">Gardes</a></li>
                 </ul>

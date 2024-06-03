@@ -1,6 +1,5 @@
 <?php
 
-require_once("Models/globalModel.php");
 
 function selectAllScientists($pdo){
     try{
@@ -16,6 +15,20 @@ function selectAllScientists($pdo){
     }catch(PDOEXCEPTION $e){
         $message = $e->getMessage();
         die($message);
+    }
+}
+
+function selectScientistByID($pdo){
+    try{
+        $query = 'select * from scientist where scientistID = :scientistID';
+        $experienceRequest = $pdo->prepare($query);
+        $experienceRequest->execute([
+            'scientistID' => $_GET["scientistID"]
+        ]);
+        $experience = $experienceRequest->fetch();
+        return $experience;
+    }catch(PDOException $e){
+        die($e->getMessage());
     }
 }
 
@@ -43,6 +56,27 @@ function createScientist($pdo){
     } catch(PDOEXCEPTION $e){
         $message = $e->getMessage();
         die($message);
+    }
+}
+
+function updateScientist($pdo){
+    try{
+
+        $query = "update scientist set scientistFirstName = :scientistLastName, scientistName = :scientistName, scientistDescription = :scientistDescription, scientistRank = :scientistRank, siteID = :siteID where scientistID = :scientistID";
+
+        $updateUser = $pdo->prepare($query);
+
+        $updateUser->execute([
+            'scientistLastName' => $_POST["scientistLastName"],
+            'scientistName' => $_POST["scientistName"],
+            'scientistDescription' => $_POST["scientistDescription"],
+            'scientistRank' => $_POST["scientistRank"],
+            'siteID' => $_POST["site"],
+            'scientistID' => $_GET["scientistID"]
+        ]);
+
+    }catch(PDOException $e){
+        die($e->getMessage());
     }
 }
 
@@ -79,3 +113,19 @@ function deleteScientistFromID($pdo){
         die($e->getMessage());
     }
 }
+
+function selectScientistFromExperience($pdo, $experienceID){
+    try{
+
+        $query = 'SELECT * FROM scientist where scientistID = (SELECT scientistID FROM experiences WHERE experienceID = ' . $experienceID . ');';
+        $prepareRequest = $pdo->prepare($query);
+        $prepareRequest->execute();
+        $scientist = $prepareRequest->fetch();
+        return $scientist;
+
+    }catch(PDOEXception $e){
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+

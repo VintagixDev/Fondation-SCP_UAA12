@@ -1,6 +1,5 @@
 <?php
 
-require_once("Models/globalModel.php");
 
 
 function selectAllGuards($pdo){
@@ -17,6 +16,20 @@ function selectAllGuards($pdo){
     }catch(PDOEXCEPTION $e){
         $message = $e->getMessage();
         die($message);
+    }
+}
+
+function selectGuardByID($pdo){
+    try{
+        $query = 'select * from guards where GuardID = :GuardID';
+        $experienceRequest = $pdo->prepare($query);
+        $experienceRequest->execute([
+            'GuardID' => $_GET["GuardID"]
+        ]);
+        $experience = $experienceRequest->fetch();
+        return $experience;
+    }catch(PDOException $e){
+        die($e->getMessage());
     }
 }
 
@@ -44,6 +57,27 @@ function createGuard($pdo){
     } catch(PDOEXCEPTION $e){
         $message = $e->getMessage();
         die($message);
+    }
+}
+
+function updateGuard($pdo){
+    try{
+
+        $query = "update guards set GuardName = :GuardLastName, GuardFirstName = :GuardName, GuardDescription = :GuardDescription, GuardRank = :GuardRank, siteID = :siteID where GuardID = :GuardID";
+
+        $updateUser = $pdo->prepare($query);
+
+        $updateUser->execute([
+            'GuardName' => $_POST["GuardName"],
+            'GuardLastName' => $_POST["GuardLastName"],
+            'GuardDescription' => $_POST["GuardDescription"],
+            'GuardRank' => $_POST["GuardRank"],
+            'siteID' => $_POST["site"],
+            'GuardID' => $_GET["GuardID"]
+        ]);
+
+    }catch(PDOException $e){
+        die($e->getMessage());
     }
 }
 
@@ -77,5 +111,20 @@ function deleteGuardFromID($pdo){
 
     }catch(PDOEXCEPTION $e){
         die($e->getMessage());
+    }
+}
+
+function selectGuardFromExperience($pdo, $experienceID){
+    try{
+
+        $query = 'SELECT * FROM guards where GuardID = (SELECT GuardID FROM experiences WHERE experienceID = ' . $experienceID . ');';
+        $prepareRequest = $pdo->prepare($query);
+        $prepareRequest->execute();
+        $guard = $prepareRequest->fetch();
+        return $guard;
+
+    }catch(PDOEXception $e){
+        $message = $e->getMessage();
+        die($message);
     }
 }

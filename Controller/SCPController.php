@@ -11,17 +11,18 @@ if($uri === "/scp"){
     $template = "Views/SCP/SCP.php"; 
     require_once("Views/base.php");
 
-} else if($uri === "/scpnew"){
+} else if($uri === "/scpnew" || (isset($_GET["SCPID"]) && $uri === "/SCPUpdate?SCPID=" . $_GET["SCPID"])){
     if(isset($_SESSION["user"])){
         if($_SESSION["user"]->userPermission === "admin"){
             if(isset($_POST['btnEnvoi'])){
                 
                 $messageError = verifEmptyData();
-                if(createSCP($pdo)){
-                    
+                if((isset($_GET["SCPID"]) && $uri === "/SCPUpdate?SCPID=" . $_GET["SCPID"])){
+                    updateSCP($pdo);
                     header('location:/scp');
-                } else{
-        
+                
+                }else if(createSCP($pdo)){
+                    header('location:/scp');
                 }
                 
             }else{

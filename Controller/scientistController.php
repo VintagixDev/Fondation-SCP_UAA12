@@ -6,13 +6,19 @@ if($uri === "/scientifiques" || $uri === "/scientifique"){
     $title = "Liste des scientifiques";
     $template = "Views/Personnel/scientifiques.php";
     require_once("Views/base.php");
-}else if($uri === "/newScientifique"){
+
+
+
+}else if($uri === "/newScientifique" || (isset($_GET["scientistID"]) && $uri === "/scientifiqueUpdate?scientistID=" . $_GET["scientistID"])){
     if(isset($_SESSION["user"])){
         if($_SESSION["user"]->userPermission === "admin"){
             if(isset($_POST['btnEnvoi'])){
-                
                 $messageError = verifEmptyData();
-                if(createScientist($pdo)){
+                if(isset($_GET["scientistID"]) && $uri === "/scientifiqueUpdate?scientistID=" . $_GET["scientistID"]){
+                    updateScientist($pdo);
+                    header('location:/scientifiques');
+                
+                }else if(createScientist($pdo)){
                     
                     header('location:/scientifiques');
                 }

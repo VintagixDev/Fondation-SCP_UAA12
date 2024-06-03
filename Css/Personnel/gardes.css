@@ -51,20 +51,13 @@
     position: relative;
 }
 
-.card_delete svg{
-    width: 30px;
-    height: 29px;
-    position: absolute;
-    top: 23%;
-    left: 23%;
-}
-
-.card_buttons .card_edit{
+.card_edit{
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
     border-radius: 4px;
-    background-color: #e98c00;
+    background-color: #f8a100;
     border: none;
     color: #FFFFFF;
     text-align: center;
@@ -77,13 +70,14 @@
     position: relative;
 }
 
-.card_edit svg{
+
+.card_delete svg, .card_edit svg{
     width: 30px;
     height: 29px;
     position: absolute;
     top: 23%;
-    color: black;
     left: 23%;
+    color: black;
 }
 
 .addGuard{

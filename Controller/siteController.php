@@ -1,22 +1,24 @@
 <?php
-if(isset($_GET["siteId"]) && $uri === "/site?siteId=" . $_GET["siteId"]){
+if(isset($_GET["siteID"]) && $uri === "/site?siteID=" . $_GET["siteID"]){
     
     $site = selectSiteById($pdo);
     $title = "Fondation SCP";
     $template = "Views/Site/site.php";
     require_once("Views/base.php");
 }
-else if($uri === "/sitenew"){
+else if($uri === "/sitenew" || (isset($_GET["siteID"]) && $uri === "/siteUpdate?siteID=" . $_GET["siteID"])){
     if(isset($_SESSION["user"])){
         if($_SESSION["user"]->userPermission === "admin"){
             if(isset($_POST['btnEnvoi'])){
                 
                 $messageError = verifEmptyData();
+                if((isset($_GET["siteID"]) && $uri === "/siteUpdate?siteID=" . $_GET["siteID"])){
+                    updateSite($pdo);
+                    header('location:/');
+                }
                 if(createSite($pdo)){
                     
                     header('location:/index.php');
-                } else{
-        
                 }
                 
             }else{
@@ -41,5 +43,4 @@ else if($uri === "/sitenew"){
     }
     header('location:/index.php');
 
-    
-} 
+}

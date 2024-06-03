@@ -57,8 +57,8 @@ function updateUser($pdo){
         $updateUser->execute([
             'nomUser' => $_POST['nom'],
             'prenomUser' => $_POST['prenom'],
-            'passWordUser' => $_POST['password'],
             'emailUser' => $_POST['email'],
+            'passWordUser' => $_POST['password'],
             'id' => $_SESSION['user']->userID
         ]);
 
@@ -81,3 +81,17 @@ function updateSession($pdo){
     }
 }
 
+
+function DeleteUser($pdo){
+    try {
+        $query = 'delete from user where userID = :userID';
+        $delUser = $pdo->prepare($query);
+        $delUser->execute([
+            'userID' => $_SESSION["user"]->userID
+        ]);
+
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}

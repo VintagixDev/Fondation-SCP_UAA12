@@ -1,0 +1,30 @@
+.profil{
+    margin-left: 150px;
+}
+
+h1{
+    font-size: 2.5rem;
+    text-decoration: underline;
+}
+
+.profile-label{
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0px;
+    text-decoration: underline;
+}
+
+.profile-item{
+    border-bottom: 1px gray solid;
+    width: 300px;
+    margin-bottom: 30px;
+}
+
+.buttons{
+    display: flex;
+    gap: 30px;
+}
+
+.modifier{
+    font-size: 1.2rem;
+}

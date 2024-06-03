@@ -7,13 +7,19 @@ if($uri === "/garde" || $uri === "/gardes"){
     $title = "Liste des gardes";
     $template = "Views/Personnel/gardes.php";
     require_once("Views/base.php");
-}else if($uri === "/newGarde"){
+
+
+}else if($uri === "/newGarde" || (isset($_GET["GuardID"]) && $uri === "/guardUpdate?GuardID=" . $_GET["GuardID"])){
     if(isset($_SESSION["user"])){
         if($_SESSION["user"]->userPermission === "admin"){
             if(isset($_POST['btnEnvoi'])){
                 
                 $messageError = verifEmptyData();
-                if(createGuard($pdo)){
+                if((isset($_GET["GuardID"]) && $uri === "/guardUpdate?GuardID=" . $_GET["GuardID"])){
+                    updateGuard($pdo);
+                    header('location:/gardes');
+                
+                }else if(createGuard($pdo)){
                     
                     header('location:/gardes');
                 }

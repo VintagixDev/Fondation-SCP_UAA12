@@ -1,0 +1,15 @@
+.experience{
+    display: flex;
+    margin-left: 250px;
+    margin-right: 250px;
+    gap: 150px;
+    padding-bottom: 70px;
+    justify-content: space-evenly
+}
+
+.experience .right img{
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    border: 3px black solid;
+}

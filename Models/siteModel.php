@@ -1,6 +1,6 @@
 <?php
 
-require_once("Models/globalModel.php");
+
 
 function selectAllSites($pdo){
     try{
@@ -25,7 +25,7 @@ function selectSiteById($pdo){
 
         $siteList = $pdo->prepare($query);
         $siteList->execute([
-            'siteId' => $_GET["siteId"]
+            'siteId' => $_GET["siteID"]
         ]);
 
         $site = $siteList->fetch();
@@ -50,7 +50,7 @@ function createSite($pdo){
         $ajouteSCP->execute([
             'siteName' => $_POST["site_nom"],
             'siteCountry' => $_POST["site_pays"],
-            'siteDescription' => $_POST["site_desc"],
+            'siteDescription' => $_POST["site_description"],
             'siteImg' => $img
         ]);
 
@@ -58,6 +58,25 @@ function createSite($pdo){
     } catch(PDOEXCEPTION $e){
         $message = $e->getMessage();
         die($message);
+    }
+}
+
+function updateSite($pdo){
+    try{
+
+        $query = "update site set siteName = :siteName, siteCountry = :siteCountry, siteDescription = :siteDescription where siteID = :siteID";
+
+        $updateUser = $pdo->prepare($query);
+
+        $updateUser->execute([
+            'siteName' => $_POST["site_nom"],
+            'siteCountry' => $_POST["site_pays"],
+            'siteDescription' => $_POST["site_description"],
+            'siteID' => $_GET["siteID"]
+        ]);
+
+    }catch(PDOException $e){
+        die($e->getMessage());
     }
 }
 

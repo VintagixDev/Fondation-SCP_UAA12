@@ -1,0 +1,110 @@
+.experience{
+    margin-left: 150px;
+}
+.experience .top{
+    display: flex;
+    justify-content: space-between;
+}
+.experience__card{
+    border: 1px solid black;
+    width: 800px;
+    padding: 15px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+.experience__card img{
+    width: 125px; 
+    height: 125px; 
+    border-radius: 15px;
+}
+
+.experience__flex{
+    display: flex;
+    gap: 15px;
+}
+
+.experience__flex .right{
+    display: flex;
+    flex-direction: column;
+}
+
+.experience__card h1{
+    margin: 0;
+    text-decoration: underline;
+}
+
+.addExperience{
+    margin-top: 21px;
+    margin-left: 50px;
+    margin-right: 150px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #008a22;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 14px;
+    width: 220px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-bottom: 50px;
+    height: 50px;
+}
+
+
+
+
+.card_delete{
+    
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #db0303;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 14px;
+    width: 50px;
+    height: 50px;
+    transition: all 0.5s;
+    cursor: pointer;
+    position: relative;
+}
+
+.card_edit{
+    
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f8a100;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 14px;
+    width: 50px;
+    height: 50px;
+    transition: all 0.5s;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.card_delete svg, .card_edit svg{
+    width: 30px;
+    height: 29px;
+    position: absolute;
+    top: 23%;
+    left: 23%;
+    color: black;
+}
+
+
+
+
+

@@ -1,6 +1,5 @@
 <?php
 
-require_once('Models/globalModel.php');
 function selectAllSCPs($pdo){
     try{
         $query = 'select * from scp';
@@ -83,6 +82,27 @@ function createSCP($pdo){
     }
 }
 
+function updateSCP($pdo){
+    try{
+
+        $query = "update scp set SCPMatricule = :SCPMatricule, SCPClass = :SCPClass, SCPContainement = :SCPContainment, SCPDescription = :SCPDescription, siteID = :siteID where SCPID = :SCPID";
+
+        $updateUser = $pdo->prepare($query);
+
+        $updateUser->execute([
+            'SCPMatricule' => $_POST["matricule"],
+            'SCPClass' => $_POST["classe"],
+            'SCPContainment' => $_POST["containment"],
+            'SCPDescription' => $_POST["description"],
+            'siteID' => $_POST["site"],
+            'SCPID' => $_GET["SCPID"]
+        ]);
+
+    }catch(PDOException $e){
+        die($e->getMessage());
+    }
+}
+
 function deleteSCPFromID($pdo){
     try{
         
@@ -99,8 +119,14 @@ function deleteSCPFromID($pdo){
         if(unlink("Assets/Pictures/SCP/" . $scpInfos->SCPImage)){
             echo("Assets/Pictures/SCP/" . $scpInfos->SCPImage . " successfully deleted");
         }
-        
+        $query = 'delete from experiences where SCPID = :scpId';
+        $deleteSCP = $pdo->prepare($query);
 
+        $deleteSCP->execute([
+            'scpId' => $_GET["SCPID"]
+        ]);
+
+        
         $query = 'delete from SCP where SCPID = :scpId';
         $deleteSCP = $pdo->prepare($query);
 
@@ -115,3 +141,17 @@ function deleteSCPFromID($pdo){
     }
 }
 
+function selectSCPFromExperience($pdo, $experienceID){
+    try{
+
+        $query = 'SELECT * FROM scp where SCPID = (SELECT SCPID FROM experiences WHERE experienceID = ' . $experienceID . ');';
+        $prepareRequest = $pdo->prepare($query);
+        $prepareRequest->execute();
+        $SCP = $prepareRequest->fetch();
+        return $SCP;
+
+    }catch(PDOEXception $e){
+        $message = $e->getMessage();
+        die($message);
+    }
+}
