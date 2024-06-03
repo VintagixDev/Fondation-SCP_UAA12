@@ -1,7 +1,7 @@
 <?php
 try{
-    $strConnection = "mysql:host=localhost;dbname=SCPCorp;port:3306";
-    $pdo = new PDO($strConnection, "root", "Logitech21_", [
+    $strConnection = "mysql:host=10.10.51.98;dbname=mael;port:3306";
+    $pdo = new PDO($strConnection, "mael", "root", [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
         ]);
