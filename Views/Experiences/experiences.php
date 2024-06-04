@@ -1,3 +1,5 @@
+
+
 <link rel="stylesheet" href="Css/experience.css">
 <div class="experience">
     <div class="top">
@@ -17,10 +19,15 @@
             
             <img src="Assets/Pictures/SCP/<?=$SCP->SCPImage?>" alt="">
             <div class="right">
+            <?php
+                $date = $experience->experienceDate;
+                $arr = explode(" ", $date);
+
+            ?>
                 
                 <h1><?= $experience->experienceTitre ?></h1>
                 <h2><?= $SCP->SCPMatricule?></h2>
-                <p><?= $experience->experienceDate?></p>
+                <p><?= $arr[0]?></p>
             </div>
         </div>
         <button class="card_button" onclick="location.href = 'experienceView?experienceID=<?= $experience->experienceID?>'">

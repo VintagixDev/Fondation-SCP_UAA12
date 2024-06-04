@@ -1,3 +1,7 @@
+<?php $date = $experience->experienceDate;
+    $arr = explode(" ", $date);
+
+?>
 <link rel="stylesheet" href="Css/experienceView.css">
 <div class="experience">
 
@@ -5,7 +9,7 @@
 
         <h1 style="text-decoration: underline; font-size: 2.3rem;" ><?=$experience->experienceTitre?></h1>
         <h1 style="text-decoration: underline"><?=$scp->SCPMatricule?></h1>
-        <h2>Date:</h2> <p style="text-decoration: underline"><?=$experience->experienceDate?></p>
+        <h2>Date:</h2> <p style="text-decoration: underline"><?=$arr[0]?></p>
         
         
         <h1 style="text-decoration: underline">Personnel impliqué:</h1>
